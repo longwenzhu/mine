@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+.mine{
+    width: 800px;
+    height: 400px;
+    margin: 50px auto;
+    text-align: center;
+}
+.level button{
+    background-color: #fff;
+    color: #f40;
+    border: 1px solid #f40;
+   border-radius: 6px;
+   outline: none;
+   cursor: pointer;
+   user-select: none;
+   
+}
+.level .active{
+    color: #fff;
+   background-color: #f40;
+}
+table{
+    background-color: #929196;
+    margin:  0 auto;
+    border-spacing: 1px;
+    margin-top: 10px;
+}
+td{
+    width: 16px;
+    height: 16px;
+    padding: 0;
+    background-color: #ccc;
+    border: 2px solid;
+    border-color: #fff #a1a1a1 #a1a1a1 #fff;
+    text-align: center;
+    line-height: 16px;
+    font-weight: bold;
+}
+.info{
+    color: #f40;
+}
+</style>
+<body>
+    <div class="mine">
+        <div class="level">
+            <button class="active">初级</button>
+            <button>中级</button>
+            <button>高级</button>
+            <button>重新开始</button>
+        </div>
+    
+    <div class="box"></div>
+    <div class="info">
+        剩余雷数：<span></span>fsdfds
+    </div>
+</div>
+
+<script src="jquery-3.4.1.min.js"></script>
+<script src="index.js"></script>
+</body>
+</html>
