@@ -127,9 +127,14 @@ Mine.prototype.bindEvent = function(){
                                 findAround(this.squaresDom[x][y].data('pos'));
                             }
                         }else{
-                            this.squaresDom[x][y].html(
-                                this.squares[x][y].value == 0 ? '' : this.squares[x][y].value
-                            )
+                            let str = '';
+                           if(this.squares[x][y].value == 0 || this.squaresDom[x][y].hasClass('sign')){
+                               str = '';
+                           }else{
+                               str = this.squares[x][y].value;
+                           }
+                            
+                            this.squaresDom[x][y].html(str);
                         }
                     }
                 }
@@ -143,7 +148,7 @@ Mine.prototype.bindEvent = function(){
             alert('over');
            },100);
         }
-       }else if(e.which == 3){
+       }else if(e.which == 3 && !$e.hasClass('show')){
        
         if(!$e.hasClass('sign') && !$e.hasClass('show')){
             $e.addClass('sign click-mine');
@@ -206,5 +211,6 @@ for(let i = 0; i < level.length; i++){
 }
 $but.eq(0)[0].click();
 $but.eq(3).click(() => {
-    mine.init();
-})
+    const index = $('.level .active').index();
+    $but.eq(index)[0].click();
+});
