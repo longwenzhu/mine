@@ -5,10 +5,18 @@ function Mine(rows, cols, mineNum){
     this.squares = []  
     this.surplusMine = mineNum;
     this.squaresDom = [];
-     this.allRight = false;
      this.box = $('.box');
      this.$surplus = $('.info span');
-
+     this.color = {
+         1: '#0f0ffa',
+         2: '#0f850f',
+         3: '#fa0e0e',
+         4: '#000080',
+         5: '#591618',
+         6: '#197671',
+         7: '#101412',
+         8: '#7f7f7f'
+     }
 }
 
 Mine.prototype.init = function(){
@@ -134,13 +142,13 @@ Mine.prototype.bindEvent = function(){
                                str = this.squares[x][y].value;
                            }
                             
-                            this.squaresDom[x][y].html(str);
+                            this.squaresDom[x][y].html(str).css('color', this.color[obj.value]);
                         }
                     }
                 }
                 findAround(val);
             }else{
-                $e.html(val.value);
+                $e.html(val.value).css('color', this.color[val.value]);
             }
         }else{
             this.gameOver($e);
@@ -149,15 +157,11 @@ Mine.prototype.bindEvent = function(){
            },100);
         }
        }else if(e.which == 3 && !$e.hasClass('show')){
-       
-        if(!$e.hasClass('sign') && !$e.hasClass('show')){
+        if(!$e.hasClass('sign')){
             $e.addClass('sign click-mine');
             this.$surplus.html(--this.surplusMine);
-            
             if($e.data('pos').type == 'mine'){
-                this.allRight = true;
-            }else{
-                this.allRight = false;
+               $e[0].clickRight = true;
             }
         }else{
             $e.removeClass("sign click-mine");
@@ -165,14 +169,16 @@ Mine.prototype.bindEvent = function(){
         }
         
        if(this.surplusMine == 0 ){
-        if(this.allRight){
+        if([...$('.sign')].every(val => val.clickRight)){
             this.gameOver();
-            alert('success');
+            setTimeout(() => {
+                alert('success');
+               },100)
         }else{
             this.gameOver();
             setTimeout(() => {
                 alert('over');
-               },100)
+               },100);
         }
     }
 } 
@@ -181,7 +187,6 @@ Mine.prototype.bindEvent = function(){
     })
 }
 Mine.prototype.gameOver = function($e=$()){
-    console.log($e)
     this.box.off('mousedown');
 
     $e.addClass('fail click-mine');
@@ -194,7 +199,6 @@ Mine.prototype.gameOver = function($e=$()){
         }
     }
 }
-
 
 let n = 0;
 let mine = null;
