@@ -142,7 +142,7 @@ Mine.prototype.bindEvent = function(){
                                str = this.squares[x][y].value;
                            }
                             
-                            this.squaresDom[x][y].html(str).css('color', this.color[obj.value]);
+                            this.squaresDom[x][y].html(str).css('color', this.color[str]);
                         }
                     }
                 }
